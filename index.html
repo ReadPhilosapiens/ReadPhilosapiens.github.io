@@ -2,195 +2,258 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Philo Sapiens — Links</title>
-  <meta property="og:title" content="Philo Sapiens — Links" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Philo Sapiens — Psychology, Philosophy, Critical Thinking</title>
+  <meta name="description" content="Ideas worked all the way through, not just posted about. Free letters, printable thinking tools, and books by ParaDox." />
+  <meta name="theme-color" content="#0e0d0c" />
+  <meta property="og:title" content="Philo Sapiens" />
+  <meta property="og:description" content="Ideas worked all the way through, not just posted about. Free letters, printable thinking tools, and books by ParaDox." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #0e0d0c;
       --bg-2: #141210;
+      --bg-3: #191614;
       --ink: #efe7d8;
       --ink-dim: #b8ad9a;
-      --rule: rgba(239, 231, 216, 0.14);
+      --ink-mute: #8a8278;          /* AA-passing on --bg */
+      --rule: rgba(239, 231, 216, 0.13);
+      --rule-2: rgba(239, 231, 216, 0.22);
       --red: #a3121a;
       --red-2: #c8323b;
       --gold: #c9a24b;
       --gold-2: #e6c274;
-
       --font-display: 'Cormorant Garamond', Georgia, serif;
-      --font-body: 'Inter', -apple-system, sans-serif;
-
-      --max-w: 520px;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * { box-sizing: border-box; }
 
-    html, body {
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
       margin: 0;
-      padding: 0;
-      min-height: 100vh;
+      min-height: 100svh;
       background: var(--bg);
       color: var(--ink);
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Soft depth behind the mark — pure CSS, no assets */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -18%; left: 50%;
+      width: min(760px, 150vw);
+      height: min(760px, 150vw);
+      transform: translateX(-50%);
+      background: radial-gradient(circle,
+        rgba(201, 162, 75, 0.09) 0%,
+        rgba(201, 162, 75, 0.03) 38%,
+        transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 22px calc(40px + env(safe-area-inset-bottom));
     }
 
     a { color: inherit; text-decoration: none; }
     ::selection { background: var(--red); color: var(--ink); }
 
-    .wrap {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 24px 64px 24px;
-      position: relative;
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 10px;
     }
 
+    /* ── Motion ── */
     @media (prefers-reduced-motion: no-preference) {
-      .fade-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+      .rise { animation: rise 0.85s var(--ease) both; }
     }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Topbar ── */
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--rule);
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      z-index: 10;
-    }
-    .mark {
-      font-family: var(--font-display);
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-    }
-
     /* ── Header ── */
-    .header {
-      padding: 76px 0 36px;
-      text-align: left;
-    }
+    .header { padding: clamp(64px, 16vh, 104px) 0 clamp(30px, 6vh, 44px); }
+
     .eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.2em;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 16px;
-    }
-    .wordmark {
-      font-family: var(--font-display);
-      font-size: clamp(38px, 8vw, 52px);
-      font-weight: 500;
-      margin: 0 0 16px;
-      line-height: 1.05;
-      color: var(--ink);
-    }
-    .dot { color: var(--gold); }
-    .bio {
-      font-size: 14px;
-      color: var(--ink-dim);
-      line-height: 1.65;
-      margin: 0;
-      max-width: 380px;
-    }
-    .handle {
-      color: var(--ink);
-      font-style: italic;
+      margin-bottom: 20px;
     }
 
-    /* ── Links ── */
+    .wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(46px, 15vw, 68px);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      color: var(--ink);
+    }
+    .wordmark .dot { color: var(--gold); }
+
+    .bio {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink-dim);
+      margin: 0;
+      max-width: 34ch;
+    }
+    .bio .handle { color: var(--ink); font-style: italic; }
+
+    /* ── Link cards ── */
     .links {
       display: flex;
       flex-direction: column;
+      gap: 12px;
       margin-top: 8px;
     }
 
-    .link-btn {
+    .card {
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 20px 4px;
-      border-top: 1px solid var(--rule);
-      transition: padding-left 0.25s ease, color 0.2s ease;
-      cursor: pointer;
+      min-height: 78px;
+      padding: 18px 18px 18px 20px;
+      background: var(--bg-2);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      transition:
+        border-color 0.3s var(--ease),
+        background 0.3s var(--ease),
+        transform 0.3s var(--ease);
+      -webkit-tap-highlight-color: transparent;
     }
-    .links .link-btn:last-child { border-bottom: 1px solid var(--rule); }
-    .link-btn:hover { padding-left: 10px; }
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(201,162,75,0.09), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.35s var(--ease);
+      pointer-events: none;
+    }
+    .card:hover, .card:focus-visible {
+      border-color: var(--rule-2);
+      background: var(--bg-3);
+      transform: translateY(-2px);
+    }
+    .card:hover::after, .card:focus-visible::after { opacity: 1; }
+    .card:active { transform: translateY(0) scale(0.995); }
 
-    .link-num {
+    .num {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: 15px;
+      font-size: 17px;
       color: var(--gold);
-      flex-shrink: 0;
-      width: 22px;
+      flex: none;
+      width: 24px;
+      line-height: 1;
+      padding-top: 2px;
     }
 
-    .link-text { flex: 1; min-width: 0; }
-    .link-title {
+    .body { flex: 1; min-width: 0; }
+
+    .title {
+      display: block;
       font-family: var(--font-display);
-      font-weight: 500;
-      font-size: 21px;
+      font-weight: 600;
+      font-size: 23px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
       color: var(--ink);
-      transition: color 0.2s ease;
+      transition: color 0.25s var(--ease);
     }
-    .link-btn:hover .link-title { color: var(--gold-2); }
-    .link-btn.primary .link-title { color: var(--red-2); }
-    .link-btn.primary:hover .link-title { color: var(--gold-2); }
+    .card:hover .title { color: var(--gold-2); }
 
-    .link-sub {
-      font-size: 12.5px;
-      color: var(--ink-dim);
-      margin-top: 4px;
-      letter-spacing: 0.01em;
+    .sub {
+      display: block;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-mute);
+      margin-top: 5px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 2.5px 7px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: 3px;
     }
 
     .arrow {
-      flex-shrink: 0;
-      font-size: 15px;
-      color: var(--ink-dim);
-      opacity: 0;
-      transform: translateX(-4px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      flex: none;
+      font-size: 17px;
+      color: var(--ink-mute);
+      transition: transform 0.3s var(--ease), color 0.25s var(--ease);
     }
-    .link-btn:hover .arrow {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    .card:hover .arrow { transform: translateX(4px); color: var(--gold); }
 
-    /* ── Instagram link ── */
-    .ig-link {
-      display: block;
-      margin-top: 36px;
+    /* ── Social ── */
+    .social {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 30px;
+      padding: 11px 18px;
+      border: 1px solid var(--rule);
+      border-radius: 100px;
       font-size: 13px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       color: var(--gold);
-      text-decoration: none;
-      transition: color 0.2s ease;
+      transition: border-color 0.3s var(--ease), color 0.25s var(--ease), background 0.3s var(--ease);
     }
-    .ig-link:hover { color: var(--gold-2); }
+    .social:hover, .social:focus-visible {
+      border-color: var(--gold);
+      color: var(--gold-2);
+      background: rgba(201, 162, 75, 0.06);
+    }
 
     /* ── Footer ── */
     footer {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      padding: 40px 24px 24px;
-      font-size: 10.5px;
-      letter-spacing: 0.15em;
+      padding: 44px 22px calc(28px + env(safe-area-inset-bottom));
+      font-size: 10px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--ink-dim);
-      opacity: 0.5;
+      color: var(--ink-mute);
+    }
+
+    @media (max-width: 380px) {
+      .card { gap: 12px; padding: 16px; min-height: 72px; }
+      .title { font-size: 21px; }
+      .sub { font-size: 12.5px; }
+      .num { width: 20px; font-size: 15px; }
     }
   </style>
 </head>
@@ -198,48 +261,48 @@
 
   <div class="wrap">
 
-    <div class="header fade-up">
-      <div class="eyebrow">Psychology · Philosophy</div>
+    <header class="header rise">
+      <p class="eyebrow">Psychology · Philosophy</p>
       <h1 class="wordmark">Philo Sapiens<span class="dot">.</span></h1>
       <p class="bio">Ideas worked all the way through, not just posted about. Written by <span class="handle">ParaDox</span>.</p>
-    </div>
+    </header>
 
-    <nav class="links fade-up" style="animation-delay: 0.1s;">
+    <nav class="links" aria-label="Main">
 
-      <a class="link-btn primary" href="vault.html">
-        <span class="link-num">I.</span>
-        <span class="link-text">
-          <span class="link-title">The Vault</span>
-          <span class="link-sub">Printable worksheets &amp; tools — free, plus premium from $2</span>
+      <a class="card rise" style="animation-delay:0.08s" href="letters.html">
+        <span class="num">I.</span>
+        <span class="body">
+          <span class="title">The Letters<span class="badge">Free</span></span>
+          <span class="sub">Five letters on how your choices get quietly removed — and how to put them back.</span>
         </span>
-        <span class="arrow">→</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="link-btn" href="library.html">
-        <span class="link-num">II.</span>
-        <span class="link-text">
-          <span class="link-title">The Library</span>
-          <span class="link-sub">Ebooks by ParaDox — $12 each</span>
+      <a class="card rise" style="animation-delay:0.16s" href="vault.html">
+        <span class="num">II.</span>
+        <span class="body">
+          <span class="title">The Vault</span>
+          <span class="sub">Printable worksheets and thinking tools. Three free, two premium from $2.</span>
         </span>
-        <span class="arrow">→</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="link-btn" href="letters.html">
-        <span class="link-num">III.</span>
-        <span class="link-text">
-          <span class="link-title">The Letters</span>
-          <span class="link-sub">Free to read — five letters on how your choices get quietly removed</span>
+      <a class="card rise" style="animation-delay:0.24s" href="library.html">
+        <span class="num">III.</span>
+        <span class="body">
+          <span class="title">The Library</span>
+          <span class="sub">Short, sharp digital books. $12 each, or both together for $18.</span>
         </span>
-        <span class="arrow">→</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
 
     </nav>
 
-    <a class="ig-link fade-up" style="animation-delay: 0.2s;" href="https://instagram.com/philo_sapiens_" target="_blank" rel="noopener">@philo_sapiens_ on Instagram ↗</a>
+    <a class="social rise" style="animation-delay:0.32s" href="https://instagram.com/philo_sapiens_" target="_blank" rel="noopener">@philo_sapiens_ on Instagram ↗</a>
 
   </div>
 
-  <footer>© 2026 PHILO SAPIENS — WRITTEN BY PARADOX</footer>
+  <footer>© 2026 Philo Sapiens — Written by ParaDox</footer>
 
 </body>
 </html>
