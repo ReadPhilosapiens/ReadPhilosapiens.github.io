@@ -130,7 +130,7 @@
 
     .card {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 16px;
       min-height: 78px;
       padding: 18px 18px 18px 20px;
@@ -170,7 +170,7 @@
       flex: none;
       width: 24px;
       line-height: 1;
-      padding-top: 2px;
+      padding-top: 7px;   /* sits on the title's optical baseline */
     }
 
     .body { flex: 1; min-width: 0; }
@@ -213,6 +213,7 @@
       flex: none;
       font-size: 17px;
       color: var(--ink-mute);
+      padding-top: 4px;   /* align with the title, not the block */
       transition: transform 0.3s var(--ease), color 0.25s var(--ease);
     }
     .card:hover .arrow { transform: translateX(4px); color: var(--gold); }
