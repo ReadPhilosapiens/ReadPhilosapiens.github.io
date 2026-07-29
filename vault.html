@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Vault — Philo Sapiens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0d0c;
+      --bg-2: #141210;
+      --ink: #efe7d8;
+      --ink-dim: #b8ad9a;
+      --rule: rgba(239, 231, 216, 0.14);
+      --red: #a3121a;
+      --red-2: #c8323b;
+      --gold: #c9a24b;
+      --gold-2: #e6c274;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --max-w: 720px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    ::selection { background: var(--red); color: var(--ink); }
+
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-up { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Topbar */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--rule);
+      position: sticky; top: 0;
+      background: var(--bg); z-index: 10;
+    }
+    .topbar-brand {
+      font-family: var(--font-display);
+      font-size: 13px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-dim);
+      text-decoration: none;
+    }
+    .topbar-handle {
+      font-size: 12px; color: var(--gold);
+      letter-spacing: 0.05em; text-decoration: none;
+    }
+    .topbar-handle:hover { color: var(--gold-2); }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 36px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 48px;
+    }
+    .hero-eyebrow {
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--gold); margin: 0 0 16px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 7vw, 56px);
+      font-weight: 500; margin: 0 0 16px;
+      line-height: 1.05; color: var(--ink);
+    }
+    .hero-sub {
+      font-size: 14.5px; color: var(--ink-dim);
+      line-height: 1.7; max-width: 500px; margin: 0;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--ink-dim); margin: 0 0 32px;
+    }
+
+    /* Resource cards */
+    .resource-card {
+      border: 1px solid var(--rule);
+      border-radius: 10px; padding: 32px;
+      margin-bottom: 24px; background: var(--bg-2);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .resource-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+    /* Premium card */
+    .premium-card {
+      border: 1px solid rgba(201, 162, 75, 0.35);
+      border-radius: 10px; padding: 32px;
+      margin-bottom: 24px; background: var(--bg-2);
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .premium-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .premium-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .premium-badge {
+      display: inline-block;
+      font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--bg); background: var(--gold);
+      padding: 3px 8px; border-radius: 3px; margin-bottom: 12px;
+    }
+    .premium-price {
+      font-size: 13px; font-weight: 600;
+      color: var(--gold); margin: 0 0 16px;
+      letter-spacing: 0.05em;
+    }
+    .buy-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--bg);
+      padding: 11px 22px; border-radius: 6px;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.3px; text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .buy-btn:hover { background: var(--gold-2); }
+
+    .resource-kicker {
+      font-size: 11.5px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); margin: 0 0 12px;
+    }
+    .resource-title {
+      font-family: var(--font-display);
+      font-weight: 600; font-size: 26px;
+      margin: 0 0 12px; letter-spacing: -0.2px;
+    }
+    .resource-desc {
+      font-size: 14.5px; line-height: 1.7;
+      color: var(--ink-dim); margin: 0 0 24px;
+    }
+    .download-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--red); color: var(--ink);
+      padding: 11px 22px; border-radius: 6px;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.3px; text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .download-btn:hover { background: var(--red-2); }
+
+    /* Cross-link + tip */
+    .crosslink {
+      border-top: 1px solid var(--rule);
+      margin-top: 24px; padding: 32px 0 56px;
+    }
+    .crosslink p {
+      font-size: 14px; color: var(--ink-dim);
+      line-height: 1.7; margin: 0;
+    }
+    .crosslink a { color: var(--gold); text-decoration: none; font-weight: 500; }
+    .crosslink a:hover { color: var(--gold-2); }
+    .crosslink .tip-line {
+      font-size: 12.5px; color: #6f6c64;
+      margin-top: 10px;
+    }
+    .crosslink .tip-line a { color: #8a8278; font-weight: 400; text-decoration: underline; }
+    .crosslink .tip-line a:hover { color: var(--gold); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 28px;
+    }
+    footer .wrap {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 14px;
+    }
+    footer .handle { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink); }
+    footer .tagline { font-size: 12px; color: #6f6c64; letter-spacing: 0.3px; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a class="topbar-brand" href="index.html">Philo Sapiens</a>
+    <a class="topbar-handle" href="https://instagram.com/philo_sapiens_" target="_blank" rel="noopener">@philo_sapiens_ ↗</a>
+  </div>
+
+  <div class="wrap">
+
+    <div class="hero fade-up">
+      <p class="hero-eyebrow">Worksheets &amp; Tools</p>
+      <h1 class="hero-title">The Vault.</h1>
+      <p class="hero-sub">Printable tools built to actually change how you think, not just how you feel for five minutes. Some free, some a couple of dollars. New drops land here first.</p>
+    </div>
+
+    <p class="section-label">Free to download</p>
+
+    <div class="resource-card fade-up" style="animation-delay:0.1s">
+      <p class="resource-kicker">Field Guide</p>
+      <h2 class="resource-title">10 Power Moves Cheat Sheet</h2>
+      <p class="resource-desc">Ten specific moves for thinking clearer under pressure — the ideas from the page, worked into something you can actually use this week.</p>
+      <a class="download-btn" href="10-Power-Moves-Cheat-Sheet.pdf" target="_blank" rel="noopener">Download PDF →</a>
+    </div>
+
+    <p class="section-label" style="margin-top:48px">Premium</p>
+
+    <div class="premium-card fade-up" style="animation-delay:0.2s">
+      <span class="premium-badge">$2 · Printable</span>
+      <p class="resource-kicker">Worksheet Series · Self-Assessment</p>
+      <h2 class="resource-title">The Life Audit.</h2>
+      <p class="resource-desc">Twenty questions. Five life areas. One bottleneck — the single part of your life quietly holding down everything else. Score yourself honestly, find your weak link, and get one specific action to fix it this week.</p>
+      <p class="premium-price">$2</p>
+      <a class="buy-btn" href="https://readphilosapiens.gumroad.com/l/rbtlkj" target="_blank" rel="noopener">Get it for $2 →</a>
+    </div>
+
+    <div class="premium-card fade-up" style="animation-delay:0.25s">
+      <span class="premium-badge">$15 · 8 Pages</span>
+      <p class="resource-kicker">Toolkit No. 01 · Four Tools</p>
+      <h2 class="resource-title">The Anxiety Toolkit.</h2>
+      <p class="resource-desc">Anxiety isn't a feeling problem — it's a forecasting problem. Four tools that test the fear instead of soothing it: a ledger that scores your predictions against what actually happened, a ladder down to the fear underneath the fear, a five-step script for 2am, and the Stoic control sort nobody actually sits down and does. Built to be printed and reused.</p>
+      <p class="premium-price">$15</p>
+      <a class="buy-btn" href="https://readphilosapiens.gumroad.com/l/nsmuuy" target="_blank" rel="noopener">Get the toolkit →</a>
+    </div>
+
+    <div class="crosslink fade-up" style="animation-delay:0.3s">
+      <p>Prefer something to read? The <a href="library.html">Library</a> has full-length ebooks by Paradox.</p>
+      <p class="tip-line">If something here changed how you think, you can <a href="https://readphilosapiens.gumroad.com/l/fwzfej" target="_blank" rel="noopener">leave a tip</a> — pay what feels right.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <span class="handle">Philo Sapiens</span>
+      <span class="tagline">Psychology · Philosophy · Critical Thinking<br>© 2026 Philo Sapiens. All rights reserved.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
