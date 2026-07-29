@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Overnight Test — Philo Sapiens</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F2; --ink:#1A1815; --muted:#6B655C;
+    --rule:#D9D2C7; --accent:#A8452B; --accent-soft:#F0E4DE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--rule);font-family:'Inter',-apple-system,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;padding:24px 12px;}
+  .page{background:var(--paper);width:210mm;min-height:297mm;margin:0 auto 24px;padding:18mm 17mm 14mm;box-shadow:0 2px 24px rgba(0,0,0,.18);position:relative;display:flex;flex-direction:column;}
+
+  .cover-page{background:#1A1815 !important;color:#FAF7F2;padding:18mm 20mm 16mm !important;justify-content:space-between;}
+  .cover-brand{display:flex;justify-content:space-between;align-items:center;margin-bottom:auto;}
+  .cover-brand-name{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#A8452B;font-weight:600;}
+  .cover-edition{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#4A4540;}
+  .cover-main{padding:26mm 0 20mm;}
+  .cover-kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#A8452B;font-weight:600;margin-bottom:20px;}
+  .cover-title{font-family:'Fraunces',Georgia,serif;font-size:74px;line-height:.94;font-weight:600;letter-spacing:-.04em;color:#FAF7F2;}
+  .cover-title em{font-style:italic;color:#A8452B;}
+  .cover-rule{width:56px;height:2px;background:#A8452B;margin:28px 0 24px;}
+  .cover-sub{font-size:14px;color:#8A8278;line-height:1.65;max-width:130mm;font-weight:300;}
+  .cover-footer{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #2E2B28;padding-top:18px;}
+  .cover-meta-label{font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#5A554F;margin-bottom:5px;}
+  .cover-meta-value{font-size:9px;color:#6B655C;}
+  .cover-handle{font-family:'Fraunces',Georgia,serif;font-size:14px;color:#A8452B;font-weight:600;text-align:right;}
+
+  .eyebrow{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  h1{font-family:'Fraunces',Georgia,serif;font-size:44px;line-height:1.02;font-weight:600;letter-spacing:-.02em;margin:10px 0 0;}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lede{font-size:13px;line-height:1.62;color:var(--muted);max-width:152mm;margin-top:14px;font-weight:300;}
+  .lede strong{color:var(--ink);font-weight:500}
+  h2{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:600;letter-spacing:-.01em;}
+
+  .section{margin-top:15px}
+  .sec-head{display:flex;align-items:baseline;gap:10px;padding-bottom:6px;border-bottom:1.5px solid var(--ink);}
+  .sec-num{font-family:'Fraunces',serif;font-size:13px;color:var(--accent);font-weight:700;}
+  .sec-head h2{flex:1}
+  .sec-tag{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+  .q{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule);}
+  .q-n{font-size:10px;color:var(--muted);width:16px;flex:none;padding-top:1px;}
+  .q-t{flex:1;font-size:11.7px;line-height:1.42;}
+  .q-t b{font-weight:600}
+  .yn{display:flex;gap:6px;flex:none;}
+  .yn span{width:26px;height:24px;border:1.5px solid var(--ink);border-radius:3px;background:#fff;font-size:8px;letter-spacing:.1em;color:var(--muted);display:flex;align-items:flex-end;justify-content:center;padding-bottom:2px;}
+
+  .steps{margin-top:13px}
+  .step{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--rule);}
+  .step-n{font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--accent);width:38px;flex:none;line-height:1.15;padding-top:2px;}
+  .step-b b{display:block;font-size:12px;margin-bottom:4px;font-weight:600;}
+  .step-b p{font-size:10.8px;line-height:1.5;color:var(--muted);font-weight:300;}
+  .step-b p em{font-style:italic;color:var(--ink);}
+
+  .callout{background:var(--ink);color:var(--paper);padding:17px 20px;margin-top:16px;}
+  .callout .eyebrow{color:#E8A38F}
+  .callout p{font-family:'Fraunces',serif;font-size:17px;line-height:1.35;margin-top:8px;font-weight:400;}
+  .callout p em{color:#E8A38F;font-style:italic}
+
+  .note{border-left:2px solid var(--accent);background:var(--accent-soft);padding:12px 16px;margin-top:15px;}
+  .note b{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;}
+  .note p{font-size:11px;line-height:1.6;color:var(--ink);font-weight:300;}
+
+  .card{border:2px dashed var(--ink);background:#fff;padding:14px 18px;margin-top:16px;}
+  .card .lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px;}
+  .card .say{font-family:'Fraunces',serif;font-size:19px;line-height:1.3;margin-bottom:6px;}
+  .card .dont{font-size:10.5px;color:var(--muted);font-weight:300;line-height:1.5;}
+
+  table{width:100%;border-collapse:collapse;margin-top:12px}
+  th{text-align:left;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 6px 6px 0;border-bottom:1.5px solid var(--ink);}
+  td{padding:0;border-bottom:1px solid var(--rule);height:30px;}
+  .fill{background:#fff;border-left:1px solid var(--rule);}
+  .c-what{width:34mm}.c-sm{width:20mm}
+
+  .split{display:flex;margin-top:14px;border-top:2px solid var(--ink);}
+  .split > div{flex:1;padding-top:10px;}
+  .split > div + div{border-left:1.5px solid var(--ink);padding-left:16px;}
+  .split > div:first-child{padding-right:16px;}
+  .split-h{font-family:'Fraunces',serif;font-size:17px;font-weight:600;margin-bottom:3px;}
+  .split-h.a{color:var(--accent)}
+  .split-sub{font-size:10px;color:var(--muted);font-weight:300;line-height:1.45;margin-bottom:9px;}
+  .line{height:24px;border-bottom:1px solid var(--rule);}
+  .line.sm{height:20px}
+
+  .foot{margin-top:auto;padding-top:16px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:flex-end;gap:16px;}
+  .foot p{font-size:10.5px;line-height:1.5;color:var(--muted);max-width:112mm}
+  .foot b{color:var(--ink)}
+  .handle{font-family:'Fraunces',serif;font-size:14px;color:var(--accent);white-space:nowrap;font-weight:600;}
+  .pg{position:absolute;bottom:9mm;left:17mm;right:17mm;display:flex;justify-content:space-between;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+  .pdf-bar{position:sticky;top:0;z-index:100;background:#1A1815;color:#FAF7F2;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;font-size:13px;border-bottom:2px solid #A8452B;}
+  .pdf-bar strong{color:#A8452B;margin-right:6px;}
+  .pdf-bar .bsteps{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .pdf-bar .bstep{display:flex;align-items:center;gap:6px;color:#9A9080;}
+  .pdf-bar .bstep span{background:#2E2B28;border-radius:4px;padding:2px 8px;font-weight:600;color:#FAF7F2;font-size:11px;}
+  .pdf-bar .arw{color:#A8452B;font-size:12px;}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+    body{background:none;padding:0}
+    .pdf-bar{display:none}
+    .page{box-shadow:none;margin:0;width:auto;min-height:auto;page-break-after:always;page-break-inside:avoid}
+    .page:last-child{page-break-after:auto}
+    .note,.callout,.step,.split,.section,table,tr,.card,.q{page-break-inside:avoid}
+  }
+  @page{size:A4;margin:0}
+</style>
+</head>
+<body>
+
+<div class="pdf-bar">
+  <div><strong>To save as PDF:</strong> Open in Chrome or Edge &rarr;</div>
+  <div class="bsteps">
+    <div class="bstep"><span>Ctrl + P</span></div><div class="arw">&rarr;</div>
+    <div class="bstep">Destination: <span>Save as PDF</span></div><div class="arw">&rarr;</div>
+    <div class="bstep">Paper: <span>A4</span></div><div class="arw">&rarr;</div>
+    <div class="bstep">Margins: <span>None</span></div>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="page cover-page">
+  <div class="cover-brand">
+    <span class="cover-brand-name">Philo Sapiens</span>
+    <span class="cover-edition">Worksheet Series</span>
+  </div>
+  <div class="cover-main">
+    <div class="cover-kicker">A thirty-second filter</div>
+    <h1 class="cover-title">The<br>Overnight<br><em>Test.</em></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">Anything that can't survive a night's sleep was never yours to lose. Five questions to run while someone is waiting on you — and the exact words for buying yourself the night.</p>
+  </div>
+  <div class="cover-footer">
+    <div>
+      <div class="cover-meta-label">Keep it where you'll reach it under pressure</div>
+      <div class="cover-meta-value">5 Questions &nbsp;·&nbsp; 5 Scripts &nbsp;·&nbsp; 1 Log</div>
+    </div>
+    <div class="cover-handle">@philo_sapiens_</div>
+  </div>
+</div>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="eyebrow">A thirty-second filter</div>
+  <h1>The Tell<em>.</em></h1>
+  <p class="lede">There's a kind of pressure that has nothing to do with <em>what</em> is being asked and everything to do with <em>when</em>. <strong>When the tension sits on the clock instead of the content, someone is managing you.</strong> Run these five before you answer anything that feels urgent.</p>
+
+  <div class="section">
+    <div class="sec-head"><span class="sec-num">&mdash;</span><h2>Five questions</h2><span class="sec-tag">Tick as you go</span></div>
+    <div class="q"><span class="q-n">1</span><span class="q-t"><b>Is the deadline about the thing, or about my answer?</b> Real deadlines belong to events. Manufactured ones belong to your reply.</span><span class="yn"><span>Y</span><span>N</span></span></div>
+    <div class="q"><span class="q-n">2</span><span class="q-t"><b>Would this still be a good idea tomorrow morning?</b> If it only works tonight, it was built to die by sunrise.</span><span class="yn"><span>Y</span><span>N</span></span></div>
+    <div class="q"><span class="q-n">3</span><span class="q-t"><b>Who benefits from me deciding right now?</b> Say it out loud. Usually it isn't you.</span><span class="yn"><span>Y</span><span>N</span></span></div>
+    <div class="q"><span class="q-n">4</span><span class="q-t"><b>Am I being given new information, or new pressure?</b> Facts survive a delay. Pressure has to be applied continuously.</span><span class="yn"><span>Y</span><span>N</span></span></div>
+    <div class="q"><span class="q-n">5</span><span class="q-t"><b>Would I be embarrassed to explain this decision in a week?</b> The version of you that has slept is the one who has to live with it.</span><span class="yn"><span>Y</span><span>N</span></span></div>
+  </div>
+
+  <div class="callout">
+    <div class="eyebrow">The rule</div>
+    <p>A genuinely good decision survives <em>"let me think about it overnight."</em> It's still good in the morning.</p>
+  </div>
+
+  <div class="note">
+    <b>Why this catches you</b>
+    <p>It isn't stupidity — it's decency. Urgency hijacks two good instincts at once: your responsiveness, and your reluctance to leave someone hanging. You answer fast to be kind, and the kindness gets spent against you. That doesn't make you naive. It makes you someone worth manipulating, which is a different and less shameful thing.</p>
+  </div>
+
+  <div class="pg"><span>The Overnight Test &mdash; Philo Sapiens</span><span>Page 1 of 3</span></div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="eyebrow">Page two &mdash; what to say</div>
+  <h1>The Scripts<em>.</em></h1>
+  <p class="lede"><strong>"I'll let you know tomorrow" is a complete sentence.</strong> No apology stapled to it, no justification, no softening. The additions are where you give the ground back. Below: the line for five situations, and the thing not to add.</p>
+
+  <div class="steps">
+    <div class="step">
+      <span class="step-n">Job<br>offer</span>
+      <span class="step-b"><b>"Thanks — I'll come back to you tomorrow with an answer."</b>
+      <p><em>Don't add:</em> "I know that's annoying." "I'm probably going to say yes anyway." Any employer who won't give you a night is telling you how they'll treat you for the next two years.</p></span>
+    </div>
+    <div class="step">
+      <span class="step-n">Ulti&shy;matum</span>
+      <span class="step-b"><b>"I'm not going to decide something this big at midnight. We'll talk tomorrow."</b>
+      <p><em>Don't add:</em> "Don't be like this." "Fine, if that's what you want." You're not refusing the conversation — you're refusing the hour.</p></span>
+    </div>
+    <div class="step">
+      <span class="step-n">Sales<br>call</span>
+      <span class="step-b"><b>"I don't make same-day decisions. If it's still available tomorrow, I'm interested."</b>
+      <p><em>Don't add:</em> anything. Then stop talking. The silence does more work than any objection you could raise.</p></span>
+    </div>
+    <div class="step">
+      <span class="step-n">Family<br>demand</span>
+      <span class="step-b"><b>"I hear you. I need to sleep on it and I'll tell you tomorrow."</b>
+      <p><em>Don't add:</em> a reason. Reasons invite negotiation, and with family the negotiation is the trap, not the request.</p></span>
+    </div>
+    <div class="step">
+      <span class="step-n">A friend's<br>favour</span>
+      <span class="step-b"><b>"Let me check what I've got on and come back to you this evening."</b>
+      <p><em>Don't add:</em> "probably yes." That's you deciding while pretending you haven't.</p></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="lbl">The decoder &mdash; read their reaction</div>
+    <p class="say">Reasonable people say "of course."</p>
+    <p class="dont">The ones counting on your speed will suddenly explain why tomorrow is impossible, why it has to be now, why you're overthinking it. <strong>That reaction is more honest than anything they said before it.</strong> You have just been shown, for free, exactly what the deadline was for.</p>
+  </div>
+
+  <div class="pg"><span>The Overnight Test &mdash; Philo Sapiens</span><span>Page 2 of 3</span></div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page">
+  <div class="eyebrow">Page three &mdash; the evidence</div>
+  <h1>The Pressure<br>Log<em>.</em></h1>
+  <p class="lede">One row each time you're rushed. The final column is the whole point — <strong>come back and mark whether the deadline turned out to be real.</strong> After a dozen entries you'll have your own data on how often the clock was fake, and you'll stop needing this page.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="c-what">What was asked</th>
+        <th>What was urgent about the timing</th>
+        <th class="c-sm">Did I delay?</th>
+        <th class="c-sm">What happened</th>
+        <th class="c-sm">Deadline real?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section">
+    <div class="sec-head"><span class="sec-num">&mdash;</span><h2>Your score</h2><span class="sec-tag">After ten entries</span></div>
+    <div class="split">
+      <div>
+        <div class="split-h">Times I was rushed</div>
+        <div class="split-sub">Total rows logged.</div>
+        <div class="line"></div>
+      </div>
+      <div>
+        <div class="split-h a">Deadlines that were real</div>
+        <div class="split-sub">Count only the clear yeses.</div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="eyebrow">What you'll find</div>
+    <p>You will lose a few things this way. Let them go without grief — <em>a trap with a nice clock on it was never an opportunity.</em></p>
+  </div>
+
+  <div class="foot">
+    <p><b>Keep page two on your phone.</b> Photograph it. The scripts are only useful if you can reach them in the ninety seconds someone is staring at you waiting for an answer.</p>
+    <span class="handle">@philo_sapiens_</span>
+  </div>
+
+  <div class="pg"><span>The Overnight Test &mdash; &copy; 2026 Philo Sapiens</span><span>Page 3 of 3</span></div>
+</div>
+
+</body>
+</html>

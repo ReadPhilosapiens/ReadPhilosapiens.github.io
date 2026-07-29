@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Voice Audit — Philo Sapiens</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F2; --ink:#1A1815; --muted:#6B655C;
+    --rule:#D9D2C7; --accent:#A8452B; --accent-soft:#F0E4DE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--rule);font-family:'Inter',-apple-system,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;padding:24px 12px;}
+  .page{background:var(--paper);width:210mm;min-height:297mm;margin:0 auto 24px;padding:18mm 17mm 14mm;box-shadow:0 2px 24px rgba(0,0,0,.18);position:relative;display:flex;flex-direction:column;}
+
+  /* COVER */
+  .cover-page{background:#1A1815 !important;color:#FAF7F2;padding:18mm 20mm 16mm !important;justify-content:space-between;}
+  .cover-brand{display:flex;justify-content:space-between;align-items:center;margin-bottom:auto;}
+  .cover-brand-name{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#A8452B;font-weight:600;}
+  .cover-edition{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#4A4540;}
+  .cover-main{padding:26mm 0 20mm;}
+  .cover-kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#A8452B;font-weight:600;margin-bottom:20px;}
+  .cover-title{font-family:'Fraunces',Georgia,serif;font-size:80px;line-height:.92;font-weight:600;letter-spacing:-.04em;color:#FAF7F2;}
+  .cover-title em{font-style:italic;color:#A8452B;}
+  .cover-rule{width:56px;height:2px;background:#A8452B;margin:28px 0 24px;}
+  .cover-sub{font-size:14px;color:#8A8278;line-height:1.65;max-width:130mm;font-weight:300;}
+  .cover-footer{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #2E2B28;padding-top:18px;}
+  .cover-meta-label{font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#5A554F;margin-bottom:5px;}
+  .cover-meta-value{font-size:9px;color:#6B655C;}
+  .cover-handle{font-family:'Fraunces',Georgia,serif;font-size:14px;color:#A8452B;font-weight:600;text-align:right;}
+
+  /* SHARED */
+  .eyebrow{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  h1{font-family:'Fraunces',Georgia,serif;font-size:44px;line-height:1.02;font-weight:600;letter-spacing:-.02em;margin:10px 0 0;}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lede{font-size:13px;line-height:1.62;color:var(--muted);max-width:152mm;margin-top:14px;font-weight:300;}
+  .lede strong{color:var(--ink);font-weight:500}
+  h2{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:600;letter-spacing:-.01em;}
+
+  .how{display:flex;margin-top:18px;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);}
+  .how div{flex:1;padding:11px 14px 12px 0;}
+  .how div + div{padding-left:14px;border-left:1px solid var(--rule)}
+  .how b{display:block;font-family:'Fraunces',serif;font-size:15px;color:var(--accent);margin-bottom:3px;}
+  .how p{font-size:10.5px;line-height:1.5;color:var(--muted)}
+
+  .section{margin-top:16px}
+  .sec-head{display:flex;align-items:baseline;gap:10px;padding-bottom:6px;border-bottom:1.5px solid var(--ink);}
+  .sec-num{font-family:'Fraunces',serif;font-size:13px;color:var(--accent);font-weight:700;}
+  .sec-head h2{flex:1}
+  .sec-tag{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+  .steps{margin-top:14px}
+  .step{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule);}
+  .step-n{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:var(--accent);width:26px;flex:none;line-height:1;padding-top:2px;}
+  .step-b b{display:block;font-size:12.5px;margin-bottom:4px;font-weight:600;}
+  .step-b p{font-size:11px;line-height:1.55;color:var(--muted);font-weight:300;}
+  .step-b p em{font-style:italic;color:var(--ink);}
+
+  .callout{background:var(--ink);color:var(--paper);padding:17px 20px;margin-top:18px;}
+  .callout .eyebrow{color:#E8A38F}
+  .callout p{font-family:'Fraunces',serif;font-size:17px;line-height:1.35;margin-top:8px;font-weight:400;}
+  .callout p em{color:#E8A38F;font-style:italic}
+
+  .note{border-left:2px solid var(--accent);background:var(--accent-soft);padding:12px 16px;margin-top:16px;}
+  .note b{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;}
+  .note p{font-size:11px;line-height:1.6;color:var(--ink);font-weight:300;}
+
+  table{width:100%;border-collapse:collapse;margin-top:12px}
+  th{text-align:left;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 6px 6px 0;border-bottom:1.5px solid var(--ink);}
+  td{padding:0;border-bottom:1px solid var(--rule);height:31px;}
+  .fill{background:#fff;border-left:1px solid var(--rule);}
+  .c-when{width:24mm}.c-who{width:32mm}
+
+  .split{display:flex;margin-top:14px;border-top:2px solid var(--ink);}
+  .split > div{flex:1;padding-top:10px;}
+  .split > div + div{border-left:1.5px solid var(--ink);padding-left:16px;}
+  .split > div:first-child{padding-right:16px;}
+  .split-h{font-family:'Fraunces',serif;font-size:18px;font-weight:600;margin-bottom:3px;}
+  .split-h.a{color:var(--accent)}
+  .split-sub{font-size:10px;color:var(--muted);font-weight:300;line-height:1.45;margin-bottom:10px;}
+  .line{height:25px;border-bottom:1px solid var(--rule);}
+  .line.sm{height:21px}
+
+  .bigbox{border:2px solid var(--ink);background:#fff;padding:14px 16px 0;margin-top:16px;}
+  .bigbox .lbl{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .bigbox .hint{font-size:10.5px;color:var(--muted);font-weight:300;margin-top:3px;}
+  .bigbox .wl{height:26px;border-bottom:1px solid var(--rule);margin-top:8px;}
+
+  .foot{margin-top:auto;padding-top:16px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:flex-end;gap:16px;}
+  .foot p{font-size:10.5px;line-height:1.5;color:var(--muted);max-width:112mm}
+  .foot b{color:var(--ink)}
+  .handle{font-family:'Fraunces',serif;font-size:14px;color:var(--accent);white-space:nowrap;font-weight:600;}
+  .pg{position:absolute;bottom:9mm;left:17mm;right:17mm;display:flex;justify-content:space-between;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+  .pdf-bar{position:sticky;top:0;z-index:100;background:#1A1815;color:#FAF7F2;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;font-size:13px;border-bottom:2px solid #A8452B;}
+  .pdf-bar strong{color:#A8452B;margin-right:6px;}
+  .pdf-bar .bsteps{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .pdf-bar .bstep{display:flex;align-items:center;gap:6px;color:#9A9080;}
+  .pdf-bar .bstep span{background:#2E2B28;border-radius:4px;padding:2px 8px;font-weight:600;color:#FAF7F2;font-size:11px;}
+  .pdf-bar .arw{color:#A8452B;font-size:12px;}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+    body{background:none;padding:0}
+    .pdf-bar{display:none}
+    .page{box-shadow:none;margin:0;width:auto;min-height:auto;page-break-after:always;page-break-inside:avoid}
+    .page:last-child{page-break-after:auto}
+    .note,.callout,.step,.split,.section,.how,table,tr,.bigbox{page-break-inside:avoid}
+  }
+  @page{size:A4;margin:0}
+</style>
+</head>
+<body>
+
+<div class="pdf-bar">
+  <div><strong>To save as PDF:</strong> Open in Chrome or Edge &rarr;</div>
+  <div class="bsteps">
+    <div class="bstep"><span>Ctrl + P</span></div><div class="arw">&rarr;</div>
+    <div class="bstep">Destination: <span>Save as PDF</span></div><div class="arw">&rarr;</div>
+    <div class="bstep">Paper: <span>A4</span></div><div class="arw">&rarr;</div>
+    <div class="bstep">Margins: <span>None</span></div>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="page cover-page">
+  <div class="cover-brand">
+    <span class="cover-brand-name">Philo Sapiens</span>
+    <span class="cover-edition">Worksheet Series</span>
+  </div>
+  <div class="cover-main">
+    <div class="cover-kicker">A one-week self-assessment</div>
+    <h1 class="cover-title">The<br>Voice<br><em>Audit.</em></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">The cruelest voice in your head is rarely yours. It's just the one that never left. This is how you find out whose it is — and what to do with it once you know.</p>
+  </div>
+  <div class="cover-footer">
+    <div>
+      <div class="cover-meta-label">Print it. Carry it for a week. Write by hand.</div>
+      <div class="cover-meta-value">10 Entries &nbsp;·&nbsp; 1 Sort &nbsp;·&nbsp; 1 Rule You Choose</div>
+    </div>
+    <div class="cover-handle">@philo_sapiens_</div>
+  </div>
+</div>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="eyebrow">A one-week self-assessment</div>
+  <h1>Catching<br>it<em>.</em></h1>
+  <p class="lede">You can't out-argue the voice, because it isn't reasoning — it's a recording. <strong>You don't win a fight with a recording. You identify it.</strong> This week you're not trying to silence anything. You're only trying to catch it in the act often enough to hear whose it is.</p>
+
+  <div class="how">
+    <div><b>Notice</b><p>Catch the sentence while it's still ringing, not an hour later.</p></div>
+    <div><b>Quote it</b><p>Write it word for word. The exact phrasing is the evidence.</p></div>
+    <div><b>Name it</b><p>Ask whose voice it is. Say the name if you can find one.</p></div>
+    <div><b>Sort it</b><p>At the end of the week, keep the care. Return the cruelty.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-head"><span class="sec-num">&mdash;</span><h2>The three places it shows up</h2><span class="sec-tag">Watch for these</span></div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">1</span>
+        <span class="step-b"><b>The finish line that moves.</b>
+        <p>You complete something real. There's half a second where you could feel good about it — and then: <em>you should have done it sooner, anyone could have, don't get comfortable.</em> The line slides another ten meters and you're behind again, in a race you're the only one running.</p></span>
+      </div>
+      <div class="step">
+        <span class="step-n">2</span>
+        <span class="step-b"><b>The negotiation that opens when you rest.</b>
+        <p>You lie down and terms appear. You can rest <em>after</em> the message, <em>after</em> the tidying, <em>after</em> you've done enough. Enough never gets defined, because a moving target keeps you moving. So you get up. And you call it discipline.</p></span>
+      </div>
+      <div class="step">
+        <span class="step-n">3</span>
+        <span class="step-b"><b>The accent.</b>
+        <p>Slow down and actually listen — not obey, listen. There's a cadence. A vocabulary. A particular weight in the pause. You are not writing these lines fresh. You are quoting.</p></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="eyebrow">The move</div>
+    <p>Don't argue with what it's saying. Ask one question instead: <em>whose voice is this?</em></p>
+  </div>
+
+  <div class="note">
+    <b>Before you start</b>
+    <p>Some of these voices were trying to protect you, clumsily, in the only language they had. You're not here to condemn anyone — including yourself. The people who do this hardest are usually the ones who took feedback seriously and wanted to be good. You didn't fail to build a self. You built one faithfully, out of the materials you were handed.</p>
+  </div>
+
+  <div class="pg"><span>The Voice Audit &mdash; Philo Sapiens</span><span>Page 1 of 3</span></div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="eyebrow">Page two &mdash; the week</div>
+  <h1>The Log<em>.</em></h1>
+  <p class="lede">One row each time you catch it. Write the sentence exactly as it arrived — not a summary, not a tidier version. <strong>The last column is the one that does the work.</strong> Most of these lines were built to protect you from something. Naming what usually explains why the line still runs.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="c-when">When it fired</th>
+        <th>The sentence, word for word</th>
+        <th class="c-who">Whose voice</th>
+        <th>What it was protecting me from</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>If you can't find a name</b>
+    <p>Not every line traces to a person. Some belong to a younger version of you who was frightened and made a rule to stay safe. That counts — write <em>me, at nineteen</em>. A rule you wrote yourself at fifteen is still a rule you can review at thirty.</p>
+  </div>
+
+  <div class="callout">
+    <div class="eyebrow">What you're building</div>
+    <p>Ten rows is enough to see a pattern. Most people find two or three voices doing <em>all</em> the talking.</p>
+  </div>
+
+  <div class="pg"><span>The Voice Audit &mdash; Philo Sapiens</span><span>Page 2 of 3</span></div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page">
+  <div class="eyebrow">Page three &mdash; after the week</div>
+  <h1>The Sort<em>.</em></h1>
+  <p class="lede">Read back through your log. Nearly every one of those sentences is two things fused together — something that was trying to help you, and something that was just cruel. <strong>Separate them.</strong> You get to keep one and send the other back.</p>
+
+  <div class="split">
+    <div>
+      <div class="split-h a">Keep</div>
+      <div class="split-sub">The care underneath. The thing it was actually right about, said without the knife.</div>
+      <div class="line sm"></div><div class="line sm"></div><div class="line sm"></div>
+      <div class="line sm"></div><div class="line sm"></div><div class="line sm"></div>
+    </div>
+    <div>
+      <div class="split-h">Return to sender</div>
+      <div class="split-sub">The cruelty. The part that was never about helping you at all.</div>
+      <div class="line sm"></div><div class="line sm"></div><div class="line sm"></div>
+      <div class="line sm"></div><div class="line sm"></div><div class="line sm"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-head"><span class="sec-num">&mdash;</span><h2>The loudest one</h2><span class="sec-tag">From your log</span></div>
+    <div class="split" style="border-top:1px solid var(--rule)">
+      <div>
+        <div class="split-h">Whose voice showed up most</div>
+        <div class="split-sub">Name them.</div>
+        <div class="line"></div>
+      </div>
+      <div>
+        <div class="split-h a">How old that recording is</div>
+        <div class="split-sub">Roughly when was it installed?</div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bigbox">
+    <div class="lbl">The rule I'd write for myself instead</div>
+    <div class="hint">Same situation, same standard if the standard was fair — but in your own voice, written by someone who is actually on your side.</div>
+    <div class="wl"></div><div class="wl"></div><div class="wl"></div>
+  </div>
+
+  <div class="callout">
+    <div class="eyebrow">The whole point</div>
+    <p>Named, the sentence stops being the truth and becomes a quote — and a quote can be <em>examined, dated, and set down.</em></p>
+  </div>
+
+  <div class="foot">
+    <p><b>Run it again in ninety days.</b> The voices don't vanish, but they get quieter once they've been identified — and you'll notice faster the second time.</p>
+    <span class="handle">@philo_sapiens_</span>
+  </div>
+
+  <div class="pg"><span>The Voice Audit &mdash; &copy; 2026 Philo Sapiens</span><span>Page 3 of 3</span></div>
+</div>
+
+</body>
+</html>
