@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Manipulation Field Guide — Philo Sapiens</title>
+<style>
+  :root{
+    --red:#B01E28;
+    --red-deep:#7d141b;
+    --ink:#141013;
+    --paper:#FAF7F2;
+    --muted:#6b6560;
+    --line:#e4ddd3;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+    color:var(--ink);
+    background:#d8d2c8;
+    line-height:1.6;
+    font-size:16px;
+  }
+  .page{
+    width:210mm;
+    max-width:100%;
+    min-height:auto;
+    padding:26px 22px;
+    margin:14px auto;
+    background:var(--paper);
+    box-shadow:0 6px 30px rgba(0,0,0,.18);
+    position:relative;
+    overflow:hidden;
+  }
+  @media(min-width:800px){ .page{ padding:40px 44px; } }
+  h1,h2,h3{font-weight:700;line-height:1.15;letter-spacing:-.01em;}
+  .eyebrow{
+    font-family:-apple-system,Segoe UI,Roboto,sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-size:11px;
+    font-weight:700;
+    color:var(--red);
+  }
+  .muted{color:var(--muted);}
+  a{color:var(--red);}
+  .cover{display:flex;flex-direction:column;gap:22px;}
+  .cover-badge{
+    width:74px;height:74px;border-radius:50%;
+    background:var(--red);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-family:-apple-system,Segoe UI,sans-serif;font-weight:800;
+    font-size:13px;letter-spacing:.04em;text-align:center;line-height:1.1;
+  }
+  .cover h1{ font-size:44px; margin:0 0 10px; letter-spacing:-.02em; }
+  @media(min-width:800px){ .cover h1{ font-size:58px; } }
+  .cover h1 .accent{color:var(--red);}
+  .cover .sub{ font-size:19px; color:var(--ink); max-width:34ch; line-height:1.4; }
+  .rule{height:3px;width:64px;background:var(--red);border:0;margin:22px 0;}
+  .cover-foot{
+    font-family:-apple-system,Segoe UI,sans-serif;
+    font-size:13px;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:flex-end;
+  }
+  .cover-foot strong{color:var(--ink);}
+  .lead{font-size:19px;line-height:1.55;}
+  .lead .big{font-size:23px;font-weight:700;display:block;margin-bottom:6px;}
+  p{margin:0 0 14px;}
+  .callout{
+    border-left:4px solid var(--red);
+    background:rgba(176,30,40,.05);
+    padding:14px 18px;
+    margin:20px 0;
+    font-size:17px;
+  }
+  .section-title{font-size:13px;}
+  .tactic{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px 22px;
+    margin:0 0 16px;
+    background:#fff;
+  }
+  .tactic-head{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;}
+  .tactic-num{
+    font-family:-apple-system,Segoe UI,sans-serif;
+    font-weight:800;font-size:15px;color:#fff;background:var(--red);
+    min-width:30px;height:30px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;
+    flex:0 0 auto;
+  }
+  .tactic-name{font-size:22px;margin:0;}
+  .row{margin:9px 0;font-size:15px;}
+  .row .k{
+    font-family:-apple-system,Segoe UI,sans-serif;
+    text-transform:uppercase;letter-spacing:.12em;font-size:10.5px;
+    font-weight:700;color:var(--red);display:block;margin-bottom:2px;
+  }
+  .quote{font-style:italic;color:var(--ink);}
+  .move{background:var(--ink);color:var(--paper);border-radius:8px;padding:10px 14px;font-size:15px;}
+  .move .k{color:#f0b8bc;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:14px;}
+  th,td{text-align:left;padding:9px 10px;vertical-align:top;border-bottom:1px solid var(--line);}
+  th{font-family:-apple-system,Segoe UI,sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--red);}
+  td.t{font-weight:700;width:22%;}
+  td.line{font-style:italic;width:38%;}
+  .closing h2{font-size:30px;margin:0 0 12px;}
+  .brandline{
+    margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
+    font-family:-apple-system,Segoe UI,sans-serif;font-size:13px;color:var(--muted);
+  }
+  .brandline strong{color:var(--red);}
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div><div class="cover-badge">PHILO<br>SAPIENS</div></div>
+  <div>
+    <div class="eyebrow">A Free Field Guide</div>
+    <hr class="rule">
+    <h1>The Manipulation <span class="accent">Field Guide</span></h1>
+    <p class="sub">8 tactics people use to get a “yes” you’d normally refuse — and the one line that shuts each one down.</p>
+  </div>
+  <div class="cover-foot">
+    <span>Read it once. You’ll never un-see them.</span>
+    <span><strong>Philo Sapiens</strong> · readphilosapiens.com</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">Before the list</div>
+  <hr class="rule">
+  <p class="lead"><span class="big">Manipulation isn’t persuasion.</span>
+  Persuasion appeals to your reasoning. Manipulation goes around it — it tries to win a “yes” your reasoning would refuse, by making you <em>feel</em> something before you can <em>think</em> about anything.</p>
+  <p>That’s the good news. Because it means you don’t have to be a mind-reader to catch it. Every tactic in this guide works the same way: it manufactures an emotion and uses that emotion as leverage. Guilt. Urgency. Obligation. Confusion. The fear of losing something.</p>
+  <div class="callout">
+    <strong>The universal tell:</strong> if a request makes you feel before it makes you think — if there’s a hot spike of guilt, panic, or self-doubt right as someone asks you for something — slow down. That spike is not an accident. It’s the tool.
+  </div>
+  <p>What follows are the eight most common tactics, in plain language. For each one you get how it sounds in real life, the tell that gives it away in the moment, and one clean line that disarms it without a fight. You don’t need to win the argument. You just need to stop the tactic from working.</p>
+  <p class="muted">Read it straight through once. Then keep the last page — it’s the whole thing on one screen.</p>
+</section>
+
+<section class="page">
+  <div class="eyebrow section-title">The eight tactics</div>
+  <hr class="rule">
+  <div class="tactic">
+    <div class="tactic-head"><span class="tactic-num">1</span><h3 class="tactic-name">Guilt-tripping</h3></div>
+    <div class="row"><span class="k">How it sounds</span><span class="quote">“After everything I’ve done for you, this is how you repay me?”</span></div>
+    <div class="row"><span class="k">The tell</span>The conversation stops being about the request and becomes about your debt to them. You feel you <em>owe</em> them a yes.</div>
+    <div class="row move"><span class="k">Your move</span>Separate the two. “I’m grateful for what you’ve done. This is a separate decision — and my answer is still no.”</div>
+  </div>
+  <div class="tactic">
+    <div class="tactic-head"><span class="tactic-num">2</span><h3 class="tactic-name">Gaslighting</h3></div>
+    <div class="row"><span class="k">How it sounds</span><span class="quote">“That never happened. You’re remembering it wrong. You’re too sensitive.”</span></div>
+    <div class="row"><span class="k">The tell</span>You start doubting a memory you were sure of. Confusion arrives where you had clarity a minute ago.</div>
+    <div class="row move"><span class="k">Your move</span>Don’t litigate the memory — hold your ground. “We remember it differently, and I trust mine.”</div>
+  </div>
+  <div class="tactic">
+    <div class="tactic-head"><span class="tactic-num">3</span><h3 class="tactic-name">DARVO</h3></div>
+    <div class="row"><span class="k">How it sounds</span><span class="quote">You raise a problem, and a minute later you’re apologizing. “How dare you accuse me — after everything I put up with from you.”</span></div>
+    <div class="row"><span class="k">The tell</span>You came in with a concern and somehow ended up as the defendant. (Deny, Attack, Reverse Victim &amp; Offender.)</div>
+    <div class="row move"><span class="k">Your move</span>Refuse the role swap. “We can talk about that separately. Right now I’m addressing what happened.”</div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="tactic">
+    <div class="tactic-head"><span class="tactic-num">4</span><h3 class="tactic-name">Manufactured urgency</h3></div>
+    <div class="row"><span class="k">How it sounds</span><span class="quote">“I need an answer right now. This disappears tonight.”</span></div>
+    <div class="row"><span class="k">The tell</span>You’re pushed to decide before you can think. Real opportunities survive a night’s sleep; manufactured ones can’t afford to.</div>
+    <div class="row move"><span class="k">Your move</span>Make time a rule, not a favour. “If it can’t wait until tomorrow, the answer is no.”</div>
+  </div>
+  <div class="tactic">
+    <div class="tactic-head"><span class="tactic-num">5</span><h3 class="tactic-name">Moving the goalposts</h3></div>
+    <div class="row"><span class="k">How it sounds</span><span class="quote">“Okay — but now I also need…” The finish line slides every time you reach it.</span></div>
+    <div class="row"><span class="k">The tell</span>You keep meeting the standard and the standard keeps changing. You are always <em>almost</em> enough.</div>
+    <div class="row move"><span class="k">Your move</span>Name the pattern and fix the line. “The terms keep changing. Let’s agree what ‘done’ means — in writing — before I continue.”</div>
+  </div>
+  <div class="tactic">
+    <div class="tactic-head"><span class="tactic-num">6</span><h3 class="tactic-name">The fauxpology</h3></div>
+    <div class="row"><span class="k">How it sounds</span><span class="quote">“I’m sorry you feel that way.” / “I’m sorry if anyone was offended.”</span></div>
+    <div class="row"><span class="k">The tell</span>An apology with no admission and no changed behaviour. The subject quietly becomes your feelings, not their action.</div>
+    <div class="row move"><span class="k">Your move</span>Ask for the real one. “That’s not an apology for what happened. What will you do differently?”</div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="tactic">
+    <div class="tactic-head"><span class="tactic-num">7</span><h3 class="tactic-name">Triangulation</h3></div>
+    <div class="row"><span class="k">How it sounds</span><span class="quote">“Everyone agrees with me.” / “Even your own family thinks you’re overreacting.”</span></div>
+    <div class="row"><span class="k">The tell</span>A third party you can’t cross-examine is suddenly in the room, stacking the deck against you.</div>
+    <div class="row move"><span class="k">Your move</span>Collapse it back to two. “This is between you and me. Let’s leave everyone else out of it.”</div>
+  </div>
+  <div class="tactic">
+    <div class="tactic-head"><span class="tactic-num">8</span><h3 class="tactic-name">Foot-in-the-door</h3></div>
+    <div class="row"><span class="k">How it sounds</span><span class="quote">A tiny, reasonable yes that quietly commits you to a much bigger one. “Just sign here.” “Just this once.”</span></div>
+    <div class="row"><span class="k">The tell</span>Each step feels small — but you’d never have agreed to the destination if they’d asked for it up front.</div>
+    <div class="row move"><span class="k">Your move</span>Judge the destination, not the step. “I’m looking at where this ends, not just this ask — and there, my answer is no.”</div>
+  </div>
+  <div class="eyebrow" style="margin-top:26px;">The meta-skill</div>
+  <hr class="rule">
+  <p class="lead">You don’t have to memorise eight tactics. You have to notice one feeling.</p>
+  <p>Manipulation depends on you not seeing it. The instant you name it — even silently — most of its power is gone. So run three steps whenever a request makes your chest tighten: <strong>Feel it. Name it. Delay it.</strong> “Let me think about it and get back to you.” A fair person accepts a delay. A manipulator hates one — and that reaction tells you everything.</p>
+</section>
+
+<section class="page">
+  <div class="eyebrow">Keep this page</div>
+  <hr class="rule">
+  <h2 style="font-size:30px;margin:0 0 4px;">The one-screen cheat sheet</h2>
+  <p class="muted">Screenshot it. Next time something feels off mid-conversation, you’ll know why.</p>
+  <table>
+    <thead><tr><th>Tactic</th><th>The tell</th><th>Your line</th></tr></thead>
+    <tbody>
+      <tr><td class="t">Guilt-tripping</td><td>It’s about your debt, not the request</td><td class="line">“Grateful — but that’s a separate decision. Still no.”</td></tr>
+      <tr><td class="t">Gaslighting</td><td>You doubt a memory you were sure of</td><td class="line">“We remember it differently, and I trust mine.”</td></tr>
+      <tr><td class="t">DARVO</td><td>You raised it, now you’re the accused</td><td class="line">“We’ll talk about that separately. Back to what happened.”</td></tr>
+      <tr><td class="t">Manufactured urgency</td><td>Decide now, no time to think</td><td class="line">“If it can’t wait till tomorrow, it’s a no.”</td></tr>
+      <tr><td class="t">Moving the goalposts</td><td>You meet the bar, the bar moves</td><td class="line">“Let’s define ‘done’ in writing before I continue.”</td></tr>
+      <tr><td class="t">The fauxpology</td><td>Sorry, but no admission or change</td><td class="line">“That’s not an apology. What will you do differently?”</td></tr>
+      <tr><td class="t">Triangulation</td><td>An absent third party is invoked</td><td class="line">“This is between you and me.”</td></tr>
+      <tr><td class="t">Foot-in-the-door</td><td>Small yeses toward a big one</td><td class="line">“I’m judging where this ends — and it’s a no.”</td></tr>
+    </tbody>
+  </table>
+  <div class="callout" style="margin-top:26px;">
+    <strong>The rule under all eight:</strong> if you feel it before you think it, pause. Feel it. Name it. Delay it.
+  </div>
+  <div class="closing" style="margin-top:30px;">
+    <p>Spotting these is the easy half. The hard half is the person who knows you — who learned years ago exactly which button gets a reaction. That’s a different skill, and it’s what I write about.</p>
+    <div class="brandline">
+      You’re reading this because you joined the <strong>Philo Sapiens</strong> letters. Watch your inbox — the next one’s already on the way.<br>
+      readphilosapiens.com
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

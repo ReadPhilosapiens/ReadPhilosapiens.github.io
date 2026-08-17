@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Manipulation Field Guide — Philo Sapiens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0d0c; --bg-2:#141210;
+    --ink:#efe7d8; --ink-dim:#b8ad9a;
+    --rule:rgba(239,231,216,.14);
+    --red:#a3121a; --red-2:#c8323b;
+    --gold:#c9a24b; --gold-2:#e6c274;
+    --font-display:'Cormorant Garamond',Georgia,serif;
+    --font-body:'Inter',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--red);color:var(--ink);}
+  .wrap{max-width:560px;margin:0 auto;padding:0 24px 72px;}
+  .topbar{display:flex;justify-content:center;padding:28px 0;border-bottom:1px solid var(--rule);}
+  .topbar .mark{font-family:var(--font-display);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);}
+  @media (prefers-reduced-motion:no-preference){ .fade-up{animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;} }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  .hero{text-align:center;padding:60px 0 8px;position:relative;}
+  .hero::before{content:"";position:absolute;inset:-20px 0 auto 0;height:300px;background:radial-gradient(ellipse at 50% 0%,rgba(163,18,26,.20),transparent 65%);pointer-events:none;}
+  .kicker{position:relative;display:inline-block;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+  h1{position:relative;font-family:var(--font-display);font-weight:500;font-size:clamp(34px,9vw,52px);line-height:1.04;letter-spacing:-.01em;margin:0 0 24px;}
+  h1 .em{color:var(--red-2);font-style:italic;}
+  .valueprop{position:relative;max-width:420px;margin:0 auto;text-align:left;}
+  .vp-line{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--ink-dim);padding:11px 0;border-bottom:1px solid var(--rule);}
+  .vp-line:first-child{border-top:1px solid var(--rule);}
+  .vp-line .n{font-family:var(--font-display);font-style:italic;color:var(--gold);flex-shrink:0;font-size:16px;}
+  .vp-line b{color:var(--ink);font-weight:500;}
+  /* form */
+  .capture{position:relative;margin:38px auto 0;max-width:420px;}
+  .capture input[type=email]{width:100%;padding:16px 18px;font-family:var(--font-body);font-size:15px;color:var(--ink);background:var(--bg-2);border:1px solid var(--rule);border-radius:10px;outline:none;transition:border-color .2s;}
+  .capture input[type=email]:focus{border-color:var(--gold);}
+  .capture input[type=email]::placeholder{color:var(--ink-dim);}
+  .capture button{width:100%;margin-top:12px;padding:16px 18px;font-family:var(--font-body);font-size:15px;font-weight:600;letter-spacing:.02em;color:#0e0d0c;background:linear-gradient(180deg,var(--gold-2),var(--gold));border:0;border-radius:10px;cursor:pointer;transition:transform .15s,filter .2s;}
+  .capture button:hover{filter:brightness(1.06);}
+  .capture button:active{transform:translateY(1px);}
+  .fineprint{margin-top:14px;font-size:12px;color:var(--ink-dim);text-align:center;letter-spacing:.01em;}
+  .backlink{display:block;text-align:center;margin-top:40px;font-size:12.5px;color:var(--ink-dim);text-decoration:none;letter-spacing:.02em;}
+  .backlink:hover{color:var(--gold-2);}
+  .msg{text-align:center;margin-top:14px;font-size:13px;color:var(--gold-2);min-height:16px;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><span class="mark">Philo Sapiens</span></div>
+
+<div class="wrap">
+  <section class="hero fade-up">
+    <div class="kicker">A free field guide</div>
+    <h1>Spot manipulation <span class="em">before</span> it works on you.</h1>
+    <div class="valueprop">
+      <div class="vp-line"><span class="n">i.</span><span>The <b>8 tactics</b> people use to get a "yes" you'd normally refuse — in plain language.</span></div>
+      <div class="vp-line"><span class="n">ii.</span><span>The exact <b>tell</b> that gives each one away, mid-conversation.</span></div>
+      <div class="vp-line"><span class="n">iii.</span><span>One clean <b>line</b> to shut each down, without starting a fight.</span></div>
+    </div>
+  </section>
+
+  <form class="capture fade-up" style="animation-delay:.1s" id="signup"
+        action="https://app.kit.com/forms/9714050/subscriptions" method="post" target="kitsink">
+    <input type="email" name="email_address" placeholder="Your email address" required autocomplete="email">
+    <button type="submit">Send me the field guide</button>
+    <div class="fineprint">Free. Unsubscribe in one click. No spam, ever.</div>
+    <div class="msg" id="msg"></div>
+  </form>
+
+  <a class="backlink" href="index.html">← Back to Philo Sapiens</a>
+</div>
+
+<iframe name="kitsink" style="display:none" title="hidden"></iframe>
+<script>
+  var f=document.getElementById('signup'), msg=document.getElementById('msg');
+  f.addEventListener('submit',function(){
+    var email=f.email_address.value.trim();
+    if(!email){return;}
+    msg.textContent="Sending your guide…";
+    // form posts to Kit via hidden iframe; then we deliver the guide
+    setTimeout(function(){ window.location.href='guide.html'; }, 1400);
+  });
+</script>
+
+</body></html>
