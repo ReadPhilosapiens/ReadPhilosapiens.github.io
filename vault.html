@@ -124,6 +124,10 @@
       color: var(--bg); background: var(--gold);
       padding: 3px 8px; border-radius: 3px; margin-bottom: 12px;
     }
+    /* Flagship accent — a touch stronger than the rest */
+    .premium-card.flagship { border-color: rgba(201, 162, 75, 0.6); }
+    .premium-card.flagship::before { background: linear-gradient(90deg, var(--gold-2), var(--gold), transparent); height: 3px; }
+
     .premium-price {
       font-size: 13px; font-weight: 600;
       color: var(--gold); margin: 0 0 16px;
@@ -234,7 +238,16 @@
 
     <p class="section-label" style="margin-top:48px">Premium</p>
 
-    <div class="premium-card fade-up" style="animation-delay:0.2s">
+    <div class="premium-card flagship fade-up" style="animation-delay:0.18s">
+      <span class="premium-badge">$19 · Flagship · 4 Pages</span>
+      <p class="resource-kicker">The Master Tool · Both Series</p>
+      <h2 class="resource-title">The Fine Print.</h2>
+      <p class="resource-desc">You've read why your choices get quietly taken. This is how you take them back. A one-sitting audit that finds the rules running your life — the voice you inherited, the clock someone loaded, the scoreboard you never chose, the "enough" nobody defined — traces who actually wrote each one, and hands you the pen. Four printable pages: surface every clause in its exact words, put each on trial (keep, edit, or return to sender), then rewrite the keepers in your own hand and sign them. The tool the whole Letters series was pointing at.</p>
+      <p class="premium-price">$19</p>
+      <a class="buy-btn" href="https://readphilosapiens.gumroad.com/l/ajappj" target="_blank" rel="noopener">Get The Fine Print →</a>
+    </div>
+
+    <div class="premium-card fade-up" style="animation-delay:0.22s">
       <span class="premium-badge">$9 · Printable</span>
       <p class="resource-kicker">Worksheet Series · Self-Assessment</p>
       <h2 class="resource-title">The Life Audit.</h2>
