@@ -80,9 +80,8 @@
   f.addEventListener('submit',function(){
     var email=f.email_address.value.trim();
     if(!email){return;}
-    msg.textContent="Sending your guide…";
-    // form posts to Kit via hidden iframe; then we deliver the guide
-    setTimeout(function(){ window.location.href='guide.html'; }, 1400);
+  f.querySelector('button').disabled = true;
+        msg.textContent="Check your inbox — confirm your email and the guide is on its way.";);
   });
 </script>
 
