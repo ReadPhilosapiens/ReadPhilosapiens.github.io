@@ -219,21 +219,21 @@
       <p class="resource-kicker">Bonus · Adapted From The 48 Laws of Power</p>
       <h2 class="resource-title">10 Power Moves Cheat Sheet</h2>
       <p class="resource-desc">Ten practical power moves adapted from The 48 Laws of Power — for reading situations clearly, protecting your time, and acting with intention.</p>
-      <a class="download-btn" href="10-Power-Moves-Cheat-Sheet.pdf" target="_blank" rel="noopener">Download PDF →</a>
+      <a class="download-btn" data-gate="power-moves" href="10-Power-Moves-Cheat-Sheet.pdf" target="_blank" rel="noopener">Download PDF →</a>
     </div>
 
     <div class="resource-card fade-up" style="animation-delay:0.13s">
       <p class="resource-kicker">Worksheet · Companion to Letter I</p>
       <h2 class="resource-title">The Voice Audit</h2>
       <p class="resource-desc">The cruelest voice in your head is rarely yours — it's the one that never left. Log it for a week, find out whose it actually is, then keep the care and return the cruelty. Ten entries, one sort, one rule you write yourself.</p>
-      <a class="download-btn" href="voice-audit-print.html" target="_blank" rel="noopener">Open &amp; print →</a>
+      <a class="download-btn" data-gate="voice-audit" href="voice-audit-print.html" target="_blank" rel="noopener">Open &amp; print →</a>
     </div>
 
     <div class="resource-card fade-up" style="animation-delay:0.16s">
       <p class="resource-kicker">Worksheet · Companion to Letter III</p>
       <h2 class="resource-title">The Overnight Test</h2>
       <p class="resource-desc">Five questions to run in thirty seconds while someone is waiting on you, the exact words for buying yourself the night, and a log that shows you how often the deadline was ever real. Keep page two on your phone.</p>
-      <a class="download-btn" href="overnight-test-print.html" target="_blank" rel="noopener">Open &amp; print →</a>
+      <a class="download-btn" data-gate="overnight-test" href="overnight-test-print.html" target="_blank" rel="noopener">Open &amp; print →</a>
     </div>
 
     <p class="section-label" style="margin-top:48px">Premium</p>
@@ -302,5 +302,67 @@
     </div>
   </footer>
 
+
+<!-- Email gate for free tools -->
+<style>
+  .gate-bg{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
+  .gate-bg.open{display:flex;}
+  .gate{background:var(--bg-2);border:1px solid var(--rule);border-radius:12px;max-width:420px;width:100%;padding:30px 26px;position:relative;}
+  .gate h3{font-family:var(--font-display);font-weight:500;font-size:26px;margin:0 0 8px;color:var(--ink);}
+  .gate p{font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--ink-dim);margin:0 0 18px;}
+  .gate input[type=email]{width:100%;box-sizing:border-box;padding:14px 16px;font-family:var(--font-body);font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:8px;outline:none;margin-bottom:12px;}
+  .gate input[type=email]:focus{border-color:var(--gold);}
+  .gate button,.gate .gate-open{display:block;width:100%;box-sizing:border-box;text-align:center;padding:13px;font-family:var(--font-body);font-size:15px;font-weight:600;background:var(--red);color:var(--ink);border:0;border-radius:6px;cursor:pointer;text-decoration:none;}
+  .gate .fine{font-size:12px;margin:12px 0 0;text-align:center;}
+  .gate-x{position:absolute;top:10px;right:14px;background:none!important;width:auto!important;padding:4px!important;font-size:22px!important;color:var(--ink-dim)!important;}
+</style>
+<div class="gate-bg" id="gateBg" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="gate">
+    <button class="gate-x" type="button" id="gateX" aria-label="Close">&times;</button>
+    <div id="gateAsk">
+      <h3 id="gateTitle">Where should it go?</h3>
+      <p>Free. Leave your email and the tool opens right here. You'll also get the Field Guide and new letters as they're written.</p>
+      <form id="gateForm" action="https://app.kit.com/forms/9920946/subscriptions" method="post" target="gatesink">
+        <input type="email" name="email_address" placeholder="Your email address" required autocomplete="email">
+        <button type="submit">Unlock the free tools</button>
+      </form>
+      <p class="fine">Unsubscribe in one click. No spam, ever.</p>
+    </div>
+    <div id="gateDone" style="display:none">
+      <h3>Unlocked.</h3>
+      <p>All three free tools are open to you now on this device. Check your inbox to confirm your email.</p>
+      <a class="gate-open" id="gateOpen" href="#" target="_blank" rel="noopener">Open it &rarr;</a>
+    </div>
+  </div>
+</div>
+<iframe name="gatesink" style="display:none" title="hidden"></iframe>
+<script>
+(function(){
+  var KEY='ps_unlocked', bg=document.getElementById('gateBg'), form=document.getElementById('gateForm'),
+      openBtn=document.getElementById('gateOpen'), pending=null;
+  function unlocked(){try{return localStorage.getItem(KEY)==='1';}catch(e){return false;}}
+  function show(a){pending=a;openBtn.href=a.getAttribute('href');
+    document.getElementById('gateAsk').style.display='';document.getElementById('gateDone').style.display='none';
+    bg.classList.add('open');setTimeout(function(){form.email_address.focus();},50);}
+  function hide(){bg.classList.remove('open');}
+  document.querySelectorAll('a[data-gate]').forEach(function(a){
+    a.addEventListener('click',function(e){ if(unlocked()) return; e.preventDefault(); show(a); });
+  });
+  form.addEventListener('submit',function(){
+    if(!form.email_address.value.trim()) return;
+    try{localStorage.setItem(KEY,'1');}catch(e){}
+    document.getElementById('gateAsk').style.display='none';
+    document.getElementById('gateDone').style.display='';
+  });
+  openBtn.addEventListener('click',function(){setTimeout(hide,300);});
+  document.getElementById('gateX').addEventListener('click',hide);
+  bg.addEventListener('click',function(e){if(e.target===bg)hide();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide();});
+  // Letters link here as vault.html?get=<tool>
+  var get=new URLSearchParams(location.search).get('get');
+  if(get){var a=document.querySelector('a[data-gate="'+get+'"]');
+    if(a){a.scrollIntoView({block:'center'}); if(!unlocked()) show(a);}}
+})();
+</script>
 </body>
 </html>

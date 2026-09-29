@@ -76,7 +76,7 @@ action="https://app.kit.com/forms/9901141/subscriptions" method="post" target="k
 <iframe name="kitsink" style="display:none" title="hidden"></iframe>
 <script>
 var f=document.getElementById('signup'), msg=document.getElementById('msg');
-f.addEventListener('submit',function(){
+f.addEventListener('submit',function(){try{localStorage.setItem('ps_unlocked','1');}catch(e){}
 var email=f.email_address.value.trim();
 if(!email){return;}
 f.querySelector('button').disabled = true;
