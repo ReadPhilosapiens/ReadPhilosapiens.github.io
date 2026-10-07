@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Nine scenes. Four answers each. Find the pattern you run on yourself.">
+<title>Where Are You Running Your Own Manipulation?</title>
+<style>
+:root{color-scheme:light}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+[hidden]{display:none!important}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one narrow reading column, one scene per screen, result as a short letter. */
+:root {
+  --bg: #efe7dc;
+  --fg: #2a0f14;
+  --muted: #6b5552;
+  --surface: #e6dccf;
+  --line: #cdbfb0;
+  --accent: #9e1b2c;
+  --accent-fg: #fbf3ea;
+  --font-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #170a0d;
+    --fg: #eadfd3;
+    --muted: #a8938f;
+    --surface: #221114;
+    --line: #3d2227;
+    --accent: #d4404f;
+    --accent-fg: #170a0d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #170a0d;
+  --fg: #eadfd3;
+  --muted: #a8938f;
+  --surface: #221114;
+  --line: #3d2227;
+  --accent: #d4404f;
+  --accent-fg: #170a0d;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  padding-inline: 20px;
+  padding-block: 28px 64px;
+}
+.wrap { max-width: 36rem; margin-inline: auto; }
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.12;
+  text-wrap: balance;
+  margin: 0;
+}
+h1 { font-size: clamp(2rem, 7vw, 2.9rem); font-style: italic; margin-block: 14px 14px; }
+.intro { color: var(--muted); margin: 0 0 28px; max-width: 32rem; }
+.progress { display: flex; gap: 5px; margin-bottom: 10px; }
+.progress span { flex: 1; height: 3px; background: var(--line); }
+.progress span.done { background: var(--accent); }
+.scene { margin: 0 0 22px; font-size: 1.28rem; line-height: 1.45; text-wrap: pretty; }
+.options { display: grid; gap: 10px; }
+.opt {
+  font: inherit;
+  font-size: 1rem;
+  text-align: left;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 14px 16px;
+  cursor: pointer;
+  width: 100%;
+  min-width: 0;
+  transition: border-color 0.15s, background 0.15s;
+}
+.opt:hover { border-color: var(--accent); }
+.opt:focus-visible, .btn:focus-visible, .link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.opt.picked { border-color: var(--accent); background: var(--bg); box-shadow: inset 3px 0 0 var(--accent); }
+.nav { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; min-height: 36px; }
+.link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.link[hidden] { display: none; }
+
+/* Result */
+.pattern-name { font-size: clamp(1.9rem, 6.5vw, 2.6rem); margin: 10px 0 6px; font-style: italic; }
+.claim { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.3; margin: 0 0 22px; text-wrap: balance; }
+.result p { margin: 0 0 16px; }
+.tell { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 14px; margin-block: 22px; }
+.tell .label { display: block; margin-bottom: 6px; color: var(--accent); }
+.aphorism { font-family: var(--font-display); font-style: italic; font-size: 1.45rem; line-height: 1.3; margin: 26px 0; text-wrap: balance; }
+.bars { display: grid; gap: 10px; margin: 8px 0 26px; }
+.bar-row { display: grid; grid-template-columns: minmax(7.5rem, 11rem) 1fr 2.2rem; gap: 12px; align-items: center; font-size: 0.9rem; }
+.bar-row .name { min-width: 0; }
+.track { height: 6px; background: var(--line); }
+.fill { height: 100%; background: var(--muted); }
+.fill.top { background: var(--accent); }
+.count { font-family: var(--font-mono); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.cta { border: 1px solid var(--accent); padding: 20px; margin-top: 30px; }
+.cta h2 { font-size: 1.5rem; margin-bottom: 8px; }
+.cta p { margin: 0 0 16px; color: var(--muted); font-size: 1rem; }
+.btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-fg);
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.row { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; }
+.note { font-size: 0.85rem; color: var(--muted); margin-top: 14px; }
+@media (prefers-reduced-motion: reduce) { .opt { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+(function () {
+  // Where the result button sends people. Swap for a dedicated Kit form later.
+  var SIGNUP_URL = "letters.html";
+
+  var PATTERNS = {
+    V: {
+      name: "The Validation Loop",
+      claim: "You aren't looking for approval. You're renting a verdict you could own.",
+      body: [
+        "Most of your decisions get made twice. Once in your head, and once in someone else's reaction, and the second one is the one that counts. You send the message, then check who has seen it. You finish the work, then wait for the face that tells you what it was worth.",
+        "This isn't vanity, and it isn't weakness. Being seen accurately is a real need, and you learned early that the fastest way to feel accurate was to be told. The trouble is that a verdict you have to collect expires, so you collect again."
+      ],
+      tell: "You reread what you sent before you decide what you think of it.",
+      aphorism: "A verdict you have to collect is a verdict you never owned."
+    },
+    C: {
+      name: "The Commitment Gap",
+      claim: "You don't stay because it's working. You stay because leaving would audit the past.",
+      body: [
+        "Somewhere you started counting what you've put in instead of what you're getting out. Two years, the money, the version of you who believed in it. Stopping would mean those hours were a loan nobody repays, so you extend the loan.",
+        "Loyalty is a real virtue and you have a lot of it. The pattern starts when loyalty turns into a way of never having to say the earlier you was wrong. Nobody else is forcing this. You are keeping the books, and the books are tilted."
+      ],
+      tell: "When asked how it's going, you answer with what you've invested.",
+      aphorism: "What you've spent is not a reason. It's a receipt."
+    },
+    F: {
+      name: "The Fear Under the Fear",
+      claim: "The worry isn't the problem. It's the cover story for a quieter one.",
+      body: [
+        "You rehearse outcomes in great detail, which looks like preparation. But the rehearsal rarely ends in a choice. It ends in tiredness, and the tiredness gets filed as proof that the thing was too risky to start.",
+        "Caution has kept you out of real trouble, and that counts for something. The pattern is that the loud fear (what if it fails) is standing in front of the quiet one (what if it fails and it was really me). The loud one gets managed. The quiet one runs the budget."
+      ],
+      tell: "You can describe every way it goes wrong and none of the ways you'd respond.",
+      aphorism: "Fear that never gets named runs the budget."
+    },
+    E: {
+      name: "Ego Stops Growth",
+      claim: "You don't resist being taught. You resist being a beginner while someone can see.",
+      body: [
+        "When correction arrives, something fast and efficient takes over. It finds the flaw in the messenger, the timing, the tone, the credentials. By the time the feedback has been fully answered, it has also been fully discarded.",
+        "This comes from competence, which is why it's hard to catch. You have been right often enough to build a defense that is mostly accurate. The cost is the one case where the correction was also right, and nothing in you let it in."
+      ],
+      tell: "You judge the person who corrected you before you judge the correction.",
+      aphorism: "The part of you that can't be corrected is the part that can't be taught."
+    }
+  };
+
+  var QUESTIONS = [
+    { scene: "You send a message you're proud of. Three hours pass and nobody answers.", opts: [
+      ["V", "You reread it, then check who has seen it."],
+      ["C", "You start a follow-up so the first one doesn't feel wasted."],
+      ["F", "You run through everything in it that might have been wrong."],
+      ["E", "You decide they're busy with smaller things and let it go."] ]},
+    { scene: "You've spent two years on a plan that is clearly not working. A friend asks how it's going.", opts: [
+      ["V", "You say it's going great and watch their face."],
+      ["C", "You list what you've already put in."],
+      ["F", "You change the subject before the real answer gets close."],
+      ["E", "You explain why the plan is sound and the conditions are the issue."] ]},
+    { scene: "Someone you respect points out a flaw in your work.", opts: [
+      ["V", "You hear one sentence: they think less of me."],
+      ["C", "You defend the way you've already done it."],
+      ["F", "You picture every other flaw they haven't named yet."],
+      ["E", "You look for what's wrong with their approach, or their tone."] ]},
+    { scene: "A decision is due tomorrow and you haven't made it.", opts: [
+      ["V", "You ask three people what they'd do and take the average."],
+      ["C", "You pick the option closest to what you already did."],
+      ["F", "You wait, half hoping the choice gets made for you."],
+      ["E", "You decide fast, to show you can, without checking much."] ]},
+    { scene: "It's late. Which thought comes back most often?", opts: [
+      ["V", "Did that land the way I meant it to?"],
+      ["C", "I can't stop now, not after all of this."],
+      ["F", "What if it all goes wrong?"],
+      ["E", "I already know this. I don't need to be told."] ]},
+    { scene: "You're learning something new, and you're bad at it.", opts: [
+      ["V", "You quit the moment someone is watching."],
+      ["C", "You keep going mainly because stopping would waste the hours so far."],
+      ["F", "You put off the next lesson, because the hard part is in it."],
+      ["E", "You skip ahead to the advanced material and nod along."] ]},
+    { scene: "You get praise you didn't quite earn.", opts: [
+      ["V", "You keep it, and replay it later."],
+      ["C", "You build on it, because retracting would cost too much."],
+      ["F", "You wait for the catch."],
+      ["E", "You think: finally, someone accurate."] ]},
+    { scene: "The week ended and it was not the week you planned.", opts: [
+      ["V", "You tell people it was a busy one, so it counts."],
+      ["C", "You schedule the same week again."],
+      ["F", "You blame a feeling you can't quite name."],
+      ["E", "You decide the plan was beneath you anyway."] ]},
+    { scene: "Someone asks, plainly, what you want.", opts: [
+      ["V", "You answer with what would sound good."],
+      ["C", "You answer with what you've already been chasing."],
+      ["F", "You answer with what you're sure you can't lose."],
+      ["E", "You answer with whatever proves you were right."] ]}
+  ];
+
+  var app = document.getElementById("app");
+  var answers = [];   // index -> pattern key
+  var step = 0;
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  function header() {
+    var h = el("div");
+    h.appendChild(el("div", "label", "Philo Sapiens  ·  Self-audit"));
+    h.appendChild(el("h1", null, "Where are you running your own manipulation?"));
+    return h;
+  }
+
+  function renderQuestion() {
+    app.textContent = "";
+    app.appendChild(header());
+    if (step === 0) {
+      app.appendChild(el("p", "intro", "Nine scenes, four answers each. Pick the one you would actually do, not the one you'd admit to in public. Nobody is grading it."));
+    } else {
+      app.appendChild(el("p", "intro", ""));
+    }
+
+    var bar = el("div", "progress");
+    bar.setAttribute("aria-hidden", "true");
+    for (var i = 0; i < QUESTIONS.length; i++) bar.appendChild(el("span", i < step ? "done" : ""));
+    app.appendChild(bar);
+    app.appendChild(el("div", "label", "Scene " + (step + 1) + " of " + QUESTIONS.length));
+
+    var q = QUESTIONS[step];
+    var s = el("p", "scene", q.scene);
+    s.style.marginTop = "14px";
+    app.appendChild(s);
+
+    var group = el("div", "options");
+    group.setAttribute("role", "group");
+    group.setAttribute("aria-label", q.scene);
+    q.opts.forEach(function (o) {
+      var b = el("button", "opt" + (answers[step] === o[0] ? " picked" : ""), o[1]);
+      b.type = "button";
+      b.addEventListener("click", function () {
+        answers[step] = o[0];
+        if (step < QUESTIONS.length - 1) { step++; renderQuestion(); }
+        else { renderResult(); }
+      });
+      group.appendChild(b);
+    });
+    app.appendChild(group);
+
+    var nav = el("div", "nav");
+    var back = el("button", "link", "Back");
+    back.type = "button";
+    back.hidden = step === 0;
+    back.addEventListener("click", function () { step--; renderQuestion(); });
+    nav.appendChild(back);
+    app.appendChild(nav);
+  }
+
+  function tally() {
+    var t = { V: 0, C: 0, F: 0, E: 0 };
+    answers.forEach(function (a) { t[a]++; });
+    var order = ["V", "C", "F", "E"].sort(function (a, b) { return t[b] - t[a]; });
+    return { t: t, order: order };
+  }
+
+  function renderResult() {
+    var r = tally();
+    var top = r.order[0];
+    var second = r.order[1];
+    var P = PATTERNS[top];
+    app.textContent = "";
+
+    var head = el("div");
+    head.appendChild(el("div", "label", "Your result"));
+    app.appendChild(head);
+
+    var box = el("div", "result");
+    box.appendChild(el("h2", "pattern-name", P.name));
+    box.appendChild(el("p", "claim", P.claim));
+    P.body.forEach(function (t) { box.appendChild(el("p", null, t)); });
+
+    var tell = el("div", "tell");
+    tell.appendChild(el("span", "label", "The tell"));
+    tell.appendChild(el("span", null, P.tell));
+    box.appendChild(tell);
+
+    if (r.t[second] > 0 && r.t[second] >= r.t[top] - 1 && second !== top) {
+      box.appendChild(el("p", null, "It rarely runs alone. Your answers also lean toward " + PATTERNS[second].name + ", and the two tend to hand the work back and forth. When one is quiet, check the other."));
+    }
+
+    box.appendChild(el("p", "aphorism", P.aphorism));
+
+    box.appendChild(el("div", "label", "How your nine answers split"));
+    var bars = el("div", "bars");
+    bars.style.marginTop = "12px";
+    r.order.forEach(function (k, i) {
+      var row = el("div", "bar-row");
+      row.appendChild(el("div", "name", PATTERNS[k].name));
+      var track = el("div", "track");
+      var fill = el("div", "fill" + (i === 0 ? " top" : ""));
+      fill.style.width = (r.t[k] / QUESTIONS.length * 100) + "%";
+      track.appendChild(fill);
+      row.appendChild(track);
+      row.appendChild(el("div", "count", String(r.t[k])));
+      bars.appendChild(row);
+    });
+    box.appendChild(bars);
+
+    var cta = el("div", "cta");
+    cta.appendChild(el("h2", null, "The full breakdown is a letter."));
+    cta.appendChild(el("p", null, "This page names the pattern. The letter shows how it forms, the exact moment it fires in an ordinary week, and the first small thing that interrupts it. Free, in your inbox."));
+    var rowEl = el("div", "row");
+    var a = el("a", "btn", "Get the letter");
+    a.href = SIGNUP_URL;
+    rowEl.appendChild(a);
+    var copy = el("button", "link", "Copy my result");
+    copy.type = "button";
+    copy.addEventListener("click", function () {
+      var txt = "My result: " + P.name + ". " + P.aphorism;
+      var done = function () { copy.textContent = "Copied"; };
+      var fail = function () {
+        var ta = document.createElement("textarea");
+        ta.value = txt; ta.setAttribute("readonly", "");
+        ta.style.position = "absolute"; ta.style.left = "-9999px";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { copy.textContent = txt; }
+        document.body.removeChild(ta);
+      };
+      try { navigator.clipboard.writeText(txt).then(done, fail); } catch (e) { fail(); }
+    });
+    rowEl.appendChild(copy);
+    cta.appendChild(rowEl);
+    box.appendChild(cta);
+
+    var again = el("button", "link", "Take it again");
+    again.type = "button";
+    again.style.marginTop = "22px";
+    again.addEventListener("click", function () { answers = []; step = 0; renderQuestion(); window.scrollTo(0, 0); });
+    box.appendChild(again);
+
+    app.appendChild(box);
+    window.scrollTo(0, 0);
+  }
+
+  renderQuestion();
+})();
+</script>
+</body>
+</html>
