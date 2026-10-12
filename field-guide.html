@@ -76,12 +76,18 @@
 
 <iframe name="kitsink" style="display:none" title="hidden"></iframe>
 <script>
-  var f=document.getElementById('signup'), msg=document.getElementById('msg');
+  var f=document.getElementById('signup'), msg=document.getElementById('msg'), sink=document.getElementsByName('kitsink')[0], sent=false;
+  function go(){ if(sent){ window.location.href='guide.html'; } }
+  sink.addEventListener('load', function(){ setTimeout(go, 600); });
   f.addEventListener('submit',function(){try{localStorage.setItem('ps_unlocked','1');}catch(e){}
     var email=f.email_address.value.trim();
     if(!email){return;}
-  f.querySelector('button').disabled = true;
-      msg.textContent="Check your inbox — confirm your email and the guide is on its way.";  });
+    sent=true;
+    f.querySelector('button').disabled = true;
+    f.querySelector('button').textContent = 'Sending…';
+    msg.textContent="Done. A copy is on its way to your inbox — opening the guide now.";
+    setTimeout(go, 4000);
+  });
 </script>
 
 </body></html>
